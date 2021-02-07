@@ -1,5 +1,5 @@
 import React , {Component} from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 
 class App extends Component {
@@ -8,7 +8,16 @@ class App extends Component {
     counter: 0
   }
 
+  handleDrecrement =() => {
+     const number = this.state.counter == 0 ? 0 : this.state.counter - 1
+    this.setState({counter : number})
+  }
+
   render() {
+
+    const message = this.state.counter == 0 ? <h1 data-test="message-display" style={{color:'red'}}> The counter cannot go below zero</h1> : null ;
+
+   
 
     return (
 
@@ -19,6 +28,12 @@ class App extends Component {
     onClick = {() => {this.setState({counter: this.state.counter + 1})}}
     >
       Increment counter</button> 
+      <button 
+    data-test="decrement-button" 
+    onClick = {() => {this.handleDrecrement()}}
+    >
+      Decrement counter</button> 
+     {message}
       </div>
     )
   }
